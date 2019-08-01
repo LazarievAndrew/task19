@@ -27,8 +27,7 @@ function getStudent(name, age){
 }
 
 function cloneStudents(arr) {
-	var cloneArr = arr.slice(0);
-	return cloneArr;
+	return arr.slice(0);
 }
 
 function studentManagement (students) {
@@ -36,8 +35,6 @@ function studentManagement (students) {
     var students = cloneStudents(students);
 
     var management = {
-        
-        students : students,
 
         addStudent : function (student) {
             students.push(student);
@@ -112,12 +109,7 @@ function studentManagement (students) {
 			
 			return students.sort (function(student1, student2){
 				
-				if (student1.name > student2.name){
-                    return 1;
-                    
-				} else if (student1.name < student2.name){
-					return -1;
-                }
+			return (student1.name > student2.name) ?  1 : -1;
 			});
         },
         
@@ -128,13 +120,7 @@ function studentManagement (students) {
 				var student1AverageMark = management.averageMark(student1.name);
 				var student2AverageMark = management.averageMark(student2.name);
 
-				if(student1AverageMark < student2AverageMark){
-					return 1;
-				}else if(student1AverageMark > student2AverageMark){
-					return -1;
-				}
-
-				return 0;
+				return (student1AverageMark < student2AverageMark) ? 1 : -1;
 			});
 		}
     };
@@ -192,9 +178,6 @@ management.addMark('Sally', 1, 9);
 management.addMark('Sally', 2, 6);
 management.addMark('Sally', 3, 8);
 
-// Получившийся массив студентов с оценками:
-console.log(management.students);
-
 // 4. получение средней оценки студента по имени:
 
 console.log(management.averageMark('Andy'));
@@ -209,6 +192,7 @@ console.log(management.averageGroupMark(3));
 // // 6. получение отсортированного по именам списка студентов:
 
 // Получаем новый отсортированный массив (для корректного отображения): 
+
 var sortByName = management.getSortByName().slice(); 
 
 console.log(sortByName); 
