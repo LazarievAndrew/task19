@@ -80,8 +80,8 @@ function studentManagement (students) {
             
             var sumMarks = students.reduce (function (sum, current){
 
-                isNaN(+(current.marks[lessonNumber-1])) ? 'pofig)' : sum += current.marks[lessonNumber-1];
-
+                // isNaN(+(current.marks[lessonNumber-1])) ? 'pofig)' : sum += current.marks[lessonNumber-1];
+                !!current.marks[lessonNumber-1] ? sum += current.marks[lessonNumber-1] : 'pofig)';
                 return sum;
             },0);
 
