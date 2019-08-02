@@ -80,9 +80,7 @@ function studentManagement (students) {
             
             var sumMarks = students.reduce (function (sum, current){
 
-                !!current.marks[lessonNumber-1] ? sum += current.marks[lessonNumber-1] : sum += 0;
-
-                return sum;
+                return sum + (current.marks[lessonNumber-1] || 0);
             },0);
 
             return sumMarks / students.length;
