@@ -60,7 +60,7 @@ function studentManagement (students) {
 			var student = management.getStudent(name);
 			
 			if(student){
-				student.marks[lessonNumber] = mark;
+				student.marks[lessonNumber-1] = mark;
 			}
         },
         
@@ -68,41 +68,24 @@ function studentManagement (students) {
 			
 			var student = management.getStudent(name);
 
-			if(student){
+            var sumMarks = student.marks.reduce (function (sum, current) {
+                
+                return sum + current;
+            });
 
-				var sum = 0;
-				var count = 0;
-
-				student.marks.forEach(function(mark){
-
-					sum += mark;
-					count++;
-				});
-
-				if(sum && count){
-
-					return sum / count;
-				}
-			}
+            return sumMarks / student.marks.length;
         },
         
         averageGroupMark : function(lessonNumber){
-			
-			var sum = 0;
-			var count = 0;
+            
+            var sumMarks = students.reduce (function (sum, current){
 
-			students.forEach(function(student){
+                isNaN(+(current.marks[lessonNumber-1])) ? 'pofig)' : sum += current.marks[lessonNumber-1];
 
-				if(student.marks[lessonNumber]){
+                return sum;
+            },0);
 
-					sum += student.marks[lessonNumber];
-					count++;
-				}
-			});
-
-			if(sum && count){
-				return sum / count;
-			}
+            return sumMarks / students.length;
         },
         
         getSortByName : function(){
@@ -176,12 +159,12 @@ management.addMark('Nick', 2, 10);
 
 management.addMark('Sally', 1, 9);
 management.addMark('Sally', 2, 6);
-management.addMark('Sally', 3, 8);
+management.addMark('Sally', 3, 5);
 
 // 4. получение средней оценки студента по имени:
 
 console.log(management.averageMark('Andy'));
-console.log(management.averageMark('Sally'));
+console.log(management.averageMark('Nick'));
 
 // // 5. получение средней оценки группы за занятие:
 
